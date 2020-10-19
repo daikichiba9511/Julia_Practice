@@ -1,1 +1,24 @@
-# dockerのデプロイについてかく
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: build Dockerfile
+        run: |
+          IMAGE_NAME=test_container:${GITHUB_REF#refs/heads/} # docker imageの名前とそのタグ、${GITHUB_REF#refs/heads/}はブランチ名を取得する
+          docker build ./Practice --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/${IMAGE_NAME}
+          docker login docker.pkg.github.com --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+        env:
+            DOCKER_USERNAME: ${{secrets.GITHUB_DOCKER_USERNAME}}
+            DOCKER_PASSWORD: ${{secrets.GITHUB_TOKEN}}
+      - name: run test
+        # TODO: juliaのテストを走らせるコマンドをかく
+
+          
