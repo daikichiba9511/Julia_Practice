@@ -15,6 +15,6 @@ apt-get install -y qt5-default
 julia -e 'using Pkg; Pkg.add(["UnicodePlots", "GR", "Plots"]);\
               using UnicodePlots, GR, Plots'
 #compile Plots to reduce overhead of `using Plots`
-julia -e 'using Pkg;\
-              using PackageCompiler; compile_package("Plots",force=true);\
-              using Plots'
+# julia -e 'using Pkg;\
+#             using PackageCompiler; create_sysimage(:Plots; sysimage_path="PlotsSysimage.so");\
+#             using Plots'

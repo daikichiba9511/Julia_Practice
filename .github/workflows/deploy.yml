@@ -13,12 +13,10 @@ jobs:
       - name: build Dockerfile
         run: |
           IMAGE_NAME=test_container:${GITHUB_REF#refs/heads/} # docker imageの名前とそのタグ、${GITHUB_REF#refs/heads/}はブランチ名を取得する
-          docker build ./Practice --tag docker.pkg.github.com/${GITHUB_REPOSITORY}/${IMAGE_NAME}
-          docker login docker.pkg.github.com --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
-        env:
-            DOCKER_USERNAME: ${{secrets.GITHUB_DOCKER_USERNAME}}
-            DOCKER_PASSWORD: ${{secrets.GITHUB_TOKEN}}
+          docker build .
+
       - name: run test
         # TODO: juliaのテストを走らせるコマンドをかく
-
-          
+        run: |
+          docker run ${IMAGE_NAME} \
+          julia -e"using Base; Base.runtests(tests=["all"]; ncores=ceil(Int, Sys.CPU_THREADS / 2), exit_on_error=false, revise=false, [seed])"
