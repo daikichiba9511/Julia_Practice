@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: checkout
       - uses: actions/checkout@v1
 
       - name: build Dockerfile
@@ -20,3 +21,5 @@ jobs:
         run: |
           docker run ${IMAGE_NAME} \
           julia -e"using Base; Base.runtests(tests=["all"]; ncores=ceil(Int, Sys.CPU_THREADS / 2), exit_on_error=false, revise=false, [seed])"
+
+      # TODO: slack通知いれる　https://github.com/marketplace/actions/slack-notify
