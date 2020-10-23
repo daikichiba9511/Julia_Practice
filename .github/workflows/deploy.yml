@@ -23,3 +23,6 @@ jobs:
           julia -e"using Base; Base.runtests(tests=["all"]; ncores=ceil(Int, Sys.CPU_THREADS / 2), exit_on_error=false, revise=false, [seed])"
 
       # TODO: slack通知いれる　https://github.com/marketplace/actions/slack-notify
+
+      - name: Slack Notify
+        uses: rtCamp/action-slack-notify@v2.1.0
