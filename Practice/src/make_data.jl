@@ -1,8 +1,10 @@
 using DataFrames
 using CSV
 
+function confirm_data_description()
+    csv = DataFrame(CSV.read("./input/cv-valid-train.csv"))
+    @show head(csv[[:text, :filename]])
+end
 
-csv = DataFrame(CSV.read("Practice/input/cv-valid-train.csv"))
-head(csv[[:text, :filename]])
-
+confirm_data_description()
 
