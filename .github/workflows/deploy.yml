@@ -6,10 +6,15 @@ env:
   SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL}}
 
 jobs:
+  skipci:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "[skip ci] ${{ contains(github.event.head_commit.message, '[skip ci]') }}"
+
   build:
 
     runs-on: ubuntu-latest
-
+    if: contains(github.event.head_commit.message, '[skip ci]') == false
     steps:
       - name: checkout
         uses: actions/checkout@v1
