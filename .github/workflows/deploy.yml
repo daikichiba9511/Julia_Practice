@@ -19,7 +19,7 @@ jobs:
           IMAGE_NAME=test_container:${GITHUB_REF#refs/heads/} # docker imageの名前とそのタグ、${GITHUB_REF#refs/heads/}はブランチ名を取得する
           docker build .
 
-      - name: run test
+     # - name: run test
         # TODO: juliaのテストを走らせるコマンドをかく
         # run: |
           # docker run ${IMAGE_NAME} \
