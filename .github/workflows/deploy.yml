@@ -21,9 +21,9 @@ jobs:
 
       - name: run test
         # TODO: juliaのテストを走らせるコマンドをかく
-        run: |
-          docker run ${IMAGE_NAME} \
-          julia -e"using Base; Base.runtests(tests=["all"]; ncores=ceil(Int, Sys.CPU_THREADS / 2), exit_on_error=false, revise=false, [seed])"
+        # run: |
+          # docker run ${IMAGE_NAME} \
+          # julia -e"using Base; Base.runtests(tests=["all"]; ncores=ceil(Int, Sys.CPU_THREADS / 2), exit_on_error=false, revise=false, [seed])"
 
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.1.0
