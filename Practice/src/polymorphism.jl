@@ -161,7 +161,7 @@ end
 # https://docs.julialang.org/en/v1/manual/methods/#Trait-based-dispatch-1
 # https://github.com/JuliaLang/julia/issues/2345#issuecomment-54537633
 Base.length(l::List) = 1 + length(tali(l))
-Base.length(::Nothing) = 0
+# Base.length(::Nothing) = 0
 
 Base.IteratorSize(::List) = Base.HasLength()
 
