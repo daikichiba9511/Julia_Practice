@@ -1,4 +1,13 @@
 using FileIO
 using LibSndFile
 
-snd = load("data/sample-195774.wav")
+function main()
+    snd = load("$(pwd())/data/sample-195774.wav")
+end
+
+
+# if python, 'if __name__ == "__main__"'
+if abspath(PROGRAM_FILE) == @__FILE__
+    main()
+end
+
