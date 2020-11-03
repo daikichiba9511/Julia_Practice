@@ -1,13 +1,20 @@
 using FileIO
 using LibSndFile
+using Plots
+using WAV
+
+function plot_snd(load_filepath::String)
+    snd, fs = wavread(load_filepath)
+    display(plot(snd))
+end
 
 function main()
-    snd = load("$(pwd())/data/sample-195774.wav")
+    data_path = "$(pwd())/data/"
+    for load_file in readdir(data_path, join=true)[1:3]
+        println(load_file)
+        plot_snd(string(load_file))
+        wavread(load_file)
+    end
 end
 
-
-# if python, 'if __name__ == "__main__"'
-if abspath(PROGRAM_FILE) == @__FILE__
-    main()
-end
-
+main()
