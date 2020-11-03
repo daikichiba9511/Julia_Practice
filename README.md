@@ -2,7 +2,26 @@
 
 ## 概要
 
-Juliaの練習用のコード管理, dataはReference[3]を使用
+Juliaの練習用のコード管理, dataはReference[3]を使用する。データは以下の手順で作成
+
+1. input配下でunzipする
+2. make_data.jlを使用してdata配下に配置
+
+```shell
+$ tree -L 1
+.
+├── Dockerfile
+├── Practice
+├── README.md
+├── bashfile_for_settings
+├── data
+├── docker-compose.yml
+├── for_dev.sh
+└── input
+```
+
+NOTE: Juliaではmp3 -> wavの変換で良さそうなパッケージが見当たらなかったのでpydubを使用
+Condaパッケージを利用して`pydub` と `pyaudio` をインストールして利用した。
 
 * 仮想環境
 

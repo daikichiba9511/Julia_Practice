@@ -13,7 +13,7 @@ function main()
     for load_file in readdir(data_path, join=true)[1:3]
         println(load_file)
         plot_snd(string(load_file))
-        wavread(load_file)
+        y, fs = wavread(load_file)
     end
 end
 
