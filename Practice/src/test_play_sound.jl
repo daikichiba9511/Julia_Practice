@@ -41,8 +41,10 @@ function main()
 
         # calc mfcc
         mfcc_fe = mfcc(y16, fs)
-        println(typeof(mfcc_fe))
-        #vplot(mfcc_fe)
+        println(typeof(mfcc_fe[1]))
+        mfcc_plot = plot(mfcc_fe[1])
+        println("paramters be used to calc features : \n $(mfcc_fe[3])")
+        display(mfcc_plot)
     end
 end
 
