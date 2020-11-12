@@ -29,6 +29,15 @@ function plot_spectrogram(y16::Array{Float16, 1}, load_file::AbstractString)
     display(hmp)
 end
 
+function plot_mfcc(y16::Array{Float16, 1}, fs::Float32)
+    # calc mfcc
+    mfcc_fe = mfcc(y16, fs)
+    println(typeof(mfcc_fe[1]), size(mfcc_fe[1]))
+    mfcc_plot = plot(mfcc_fe[1])
+    println("paramters be used to calc features : \n $(mfcc_fe[3])")
+    display(mfcc_plot)
+end
+
 function main()
     data_path = "$(pwd())/data/"
     for load_file in readdir(data_path, join=true)[3:4]
@@ -40,12 +49,7 @@ function main()
         y16 = reshape(convert.(Float16, y), (length(y),))
         plot_spectrogram(y16, load_file)
 
-        # calc mfcc
-        mfcc_fe = mfcc(y16, fs)
-        println(typeof(mfcc_fe[1]), size(mfcc_fe[1]))
-        mfcc_plot = plot(mfcc_fe[1])
-        println("paramters be used to calc features : \n $(mfcc_fe[3])")
-        display(mfcc_plot)
+        plot_mfcc(y16, fs)
     end
 end
 
